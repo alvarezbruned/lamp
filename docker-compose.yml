@@ -1,0 +1,32 @@
+version: '2'
+services:
+  mysql:
+    container_name: report_task_mysql
+    build: ./mysql
+    environment:
+      - MYSQL_DATABASE=$MI_DB_NAME
+      - MYSQL_USER=$MI_DB_USERNAME
+      - MYSQL_PASSWORD=$MI_DB_PASSWORD
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - "./data/horas.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+      - "./datadir:/var/lib/mysql"
+    ports:
+      - "3306"
+  php:
+    container_name: report_task_apache
+    build: ./php
+    ports:
+      - "127.0.0.1:88:80"
+      - "9000"
+    volumes:
+      - "data/:/var/www/html"
+    depends_on:
+      - mysql
+    environment:
+      - MI_DB_USERNAME=$MI_DB_USERNAME
+      - MI_DB_PASSWORD=$MI_DB_PASSWORD
+      - MI_DB_HOSTNAME=report_task_mysql
+      - XDEBUG_CONFIG="remote_host=127.0.0.1"
+volumes:
+  db:
