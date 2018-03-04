@@ -12,13 +12,13 @@ services:
       - "./data/horas.sql:/docker-entrypoint-initdb.d/init.sql:ro"
       - "./datadir:/var/lib/mysql"
     ports:
-      - "3306"
+      - "127.0.0.1:3306:3306"
   php:
     container_name: report_task_apache
     image: albertalvarezbruned/lamp:php
     ports:
-      - "127.0.0.1:88:80"
-      - "9000"
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:9000:9000"
     volumes:
       - "./data/:/var/www/html"
     depends_on:
