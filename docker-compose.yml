@@ -2,7 +2,7 @@ version: '2'
 services:
   mysql:
     container_name: report_task_mysql
-    image: alvarezbruned/lamp:mysql
+    image: albertalvarezbruned/lamp:mysql
     environment:
       - MYSQL_DATABASE=$MI_DB_NAME
       - MYSQL_USER=$MI_DB_USERNAME
@@ -15,12 +15,12 @@ services:
       - "3306"
   php:
     container_name: report_task_apache
-    image: alvarezbruned/lamp:php
+    image: albertalvarezbruned/lamp:php
     ports:
       - "127.0.0.1:88:80"
       - "9000"
     volumes:
-      - "data/:/var/www/html"
+      - "./data/:/var/www/html"
     depends_on:
       - mysql
     environment:
