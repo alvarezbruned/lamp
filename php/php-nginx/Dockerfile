@@ -12,13 +12,13 @@ CMD ["bash"]
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install Nginx.
-RUN apt-get update && \
-  apt-get install -y software-properties-common && \
-  add-apt-repository -y ppa:nginx/stable && \
-  apt-get update && \
-  apt-get install -y nginx && \
-  rm -rf /var/lib/apt/lists/* && \
-  chown -R www-data:www-data /var/lib/nginx
+RUN apt-get update
+RUN  apt-get install -y software-properties-common
+RUN  add-apt-repository -y ppa:nginx/stable
+# RUN  apt-get update
+RUN  apt-get install -y nginx
+RUN  rm -rf /var/lib/apt/lists/*
+RUN  chown -R www-data:www-data /var/lib/nginx
 
 # Define working directory.
 WORKDIR /etc/nginx
