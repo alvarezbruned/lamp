@@ -1,5 +1,13 @@
 FROM albertalvarezbruned/lamp:php
 
+# Set environment variables.
+ENV HOME /root
+
+# Define working directory.
+WORKDIR /root
+
+# Define default command.
+CMD ["bash"]
 
 ENV DEBIAN_FRONTEND noninteractive
 
