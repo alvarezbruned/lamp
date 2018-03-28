@@ -4,11 +4,11 @@ FROM albertalvarezbruned/lamp:php
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install Nginx.
-RUN \
+RUN apt-get update && \
+  apt-get install -y software-properties-common && \
   add-apt-repository -y ppa:nginx/stable && \
   apt-get update && \
   apt-get install -y nginx && \
-  software-properties-common && \
   rm -rf /var/lib/apt/lists/* && \
   chown -R www-data:www-data /var/lib/nginx
 
