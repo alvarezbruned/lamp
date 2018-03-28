@@ -1,4 +1,4 @@
-FROM  docker pull albertalvarezbruned/lamp:php
+FROM albertalvarezbruned/lamp:php
 
 
 ENV DEBIAN_FRONTEND noninteractive
